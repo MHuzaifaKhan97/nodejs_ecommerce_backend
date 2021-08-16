@@ -1,1 +1,1 @@
-# E-Comerce Backend using NodeJS, ExpressJS & MongoDB.
+# E-Comerce Backend using Node, Express & MongoDB.
