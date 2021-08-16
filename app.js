@@ -12,7 +12,7 @@ app.use(morgan('combined'));
 const productSchema = mongoose.Schema({
     name: String,
     image: String,
-    countInStock: Number,
+    countInStock: {type: Number, required: true},
 });
 
 // Create Modal
@@ -31,18 +31,24 @@ app.post(`${api}/products`, (req, res) => {
         image: req.body.image,
         countInStock: req.body.countInStock
     });
-    product.save().then((createdProduct)=> res.send(createdProduct));
+    product.save()
+    .then((createdProduct) => res.status(200).json(createdProduct))
+    .catch(err => res.status(500).json({
+        error: err,
+        success: false
+    }));
 })
 
 // get data
-app.get(`${api}/products`, (req, res) => {
-    const product1 = {
-        id: 1,
-        name: 'Hair Dresser',
-        image: 'some_url'
+app.get(`${api}/products`, async (req, res) => {
+   const productList = await Product.find();
 
-    }
-    res.send(product1);
+   if(!productList){
+       res.status(500).json({
+           success:false
+       })
+   }
+    res.send(productList);
     // res.send('Server Started.');
 })
 
