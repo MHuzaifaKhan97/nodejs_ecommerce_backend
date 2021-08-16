@@ -15,7 +15,7 @@ const productSchema = mongoose.Schema({
     countInStock: {type: Number, required: true},
 });
 
-// Create Modal
+// Create Model
 const Product = mongoose.model('Product', productSchema);
 
 // For Public Variables
