@@ -3,20 +3,24 @@ const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const Product = require('./models/product');
-
-require('dotenv/config');
-
-// For Public Variables
-const api = process.env.API_URL;
+const cors = require('cors');
 const productRoutes = require('./routers/product');
 const userRoutes = require('./routers/user');
 const orderRoutes = require('./routers/order');
 const categoryRoutes = require('./routers/category');
 
+require('dotenv/config');
+
+// Enabling CORS
+app.use(cors());
+app.options('*',cors());
+
 // Middleware
 app.use(bodyParser.json());
 app.use(morgan('combined'));
+
+// For Public Variables
+const api = process.env.API_URL;
 
 //Routes 
 app.use(`${api}/products`, productRoutes);
@@ -34,6 +38,5 @@ mongoose.connect(process.env.CONNECTION_STRING,
     .catch((err) => console.log(err))
 
 app.listen(3000, () => {
-    console.log(api);
     console.log('Successfully Server Started.!')
 })
