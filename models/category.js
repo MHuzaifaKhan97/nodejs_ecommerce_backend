@@ -2,9 +2,17 @@ const mongoose = require('mongoose');
 
 // Category Schema
 const categorySchema = mongoose.Schema({
-    name: String,
-    image: String,
-    countInStock: {type: Number, required: true},
+    name: {
+        type: String,
+        required: true,
+    },
+    icon: {
+        type: String,
+    },
+    color: {
+        type: String,
+    },
+   
 });
 
 
