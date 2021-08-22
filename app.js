@@ -4,10 +4,10 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const productRoutes = require('./routers/product');
-const userRoutes = require('./routers/user');
-const orderRoutes = require('./routers/order');
-const categoryRoutes = require('./routers/category');
+const productRoutes = require('./routes/product');
+const userRoutes = require('./routes/user');
+const orderRoutes = require('./routes/order');
+const categoryRoutes = require('./routes/category');
 
 require('dotenv/config');
 
