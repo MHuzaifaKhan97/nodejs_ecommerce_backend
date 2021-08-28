@@ -70,7 +70,6 @@ router.put('/:id', async (req,res)=> {
         color: req.body.color,
         icon: req.body.icon
     })
-
     if (!category) {
         return res.status(404).send({ success: false, message: 'Category can not be updated' });
     }
