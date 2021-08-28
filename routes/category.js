@@ -8,7 +8,20 @@ router.get('/', async (req, res) => {
     if (!categoryList) {
         res.status(500).json({ success: false });
     }
-    res.send(categoryList);
+    res.status(200).send(categoryList);
+})
+
+router.get('/:id', async (req,res)=> {
+    const category = await Category.findById(req.params.id);
+    if(category){
+        res.status(200).send(category)
+    }else{
+        res.status(404).send({
+            success:false,
+            message:'Category not found'
+        })
+
+    }
 })
 
 router.post('/', async (req, res) => {
