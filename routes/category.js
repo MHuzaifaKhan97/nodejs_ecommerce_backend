@@ -35,5 +35,20 @@ router.post('/', async (req, res) => {
     })
 
 });
+// api/v1/category/id
+router.delete('/:id', async (req,res)=> {
+    let result = await Category.findOneAndDelete(req.params.id);
+    if(result){
+        res.status(200).send({
+            success: true,
+            message:'Category is succefully deleted'
+        })
+    }else{
+        res.status(404).send({
+            success: false,
+            message:'Category not found'
+        })
+    }
+})
 
 module.exports = router;
